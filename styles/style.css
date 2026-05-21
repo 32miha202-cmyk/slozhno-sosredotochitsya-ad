@@ -1,5 +1,271 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
-
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  background-color: var(--bg-color);
+  background-image: var(--bg-image);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--text-color);
+  font-family: var(--main-font), monospace;
+  font-size: var(--main-font-size);
+  line-height: var(--main-line-height);
+}
+
+/* Шапка */
+.header {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  block-size: 100vh;
+  min-block-size: 668px;
+  padding: 20px;
+}
+
+.decorated-zone::before,
+.decorated-zone::after {
+  content: '';
+  position: absolute;
+  inline-size: 25px;
+  block-size: 25px;
+  border: 1px solid var(--decorated-zone-color);
+}
+
+.decorated-zone::before {
+  inset-block-start: 20px;
+  inset-inline-end: 20px;
+  border-block-start: 1px solid var(--decorated-zone-color);
+  border-inline-end: 1px solid var(--decorated-zone-color);
+}
+
+.decorated-zone::after {
+  inset-block-end: 20px;
+  inset-inline-start: 20px;
+  border-block-end: 1px solid var(--decorated-zone-color);
+  border-inline-start: 1px solid var(--decorated-zone-color);
+}
+
+.header__rec {
+  position: absolute;
+  inset-block-start: 22px;
+  inset-inline-end: 30px;
+  display: var(--rec-visibility);
+  color: var(--accent-color);
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.header__rec::after {
+  content: '';
+  display: inline-block;
+  inline-size: 9px;
+  block-size: 9px;
+  margin-inline-start: 10px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 4px 2px var(--accent-color);
+}
+
+.header__theme-menu {
+  justify-self: end;
+  align-self: start;
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.header__theme-menu-button {
+  border: none;
+  padding: 2px 13px;
+  color: var(--button-color);
+  font-size: 18px;
+  line-height: 1em;
+  text-transform: lowercase;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header__theme-menu-button:hover {
+  outline: 1px solid var(--button-hover-color);
+}
+
+.header__theme-menu-button:focus-visible {
+  border-bottom: 1px solid currentColor;
+  outline: none;
+}
+
+.header__theme-menu-button_active {
+  border: 1px solid var(--button-color);
+  pointer-events: none;
+}
+
+.header__title {
+  justify-self: start;
+  align-self: center;
+  color: var(--title-color);
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  line-height: 0.825em;
+  text-shadow: 4px 4px 0 var(--accent-color);
+}
+
+.header__text {
+  justify-self: end;
+  align-self: center;
+  max-inline-size: 491px;
+}
+
+.title-decor {
+  color: var(--subtitle-color);
+  font-weight: 700;
+  background-color: var(--accent-color);
+}
+
+/* Основной контент */
+.main {
+  display: grid;
+  gap: 80px;
+  padding: 60px 20px;
+}
+
+.section {
+  display: grid;
+  gap: 20px;
+}
+
+.section__title {
+  color: var(--section-title-color);
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.section__content {
+  display: grid;
+  gap: 20px;
+}
+
+.section__subtitle {
+  color: var(--subtitle-color);
+  font-weight: 700;
+  font-size: 18px;
+  background-color: var(--accent-color);
+}
+
+.section__text {
+  color: var(--text-color);
+}
+
+.section__link {
+  text-shadow: 2px 2px 0 var(--link-shadow-color);
+}
+
+.section__link:hover {
+  text-decoration: underline;
+}
+
+.section__link:focus-visible {
+  outline: 1px solid var(--text-color);
+}
+
+.section__subtitle-regular {
+  color: var(--subtitle-color);
+  font-weight: 400;
+  font-size: 18px;
+  background-color: var(--accent-color);
+}
+
+/* Галерея */
+.gallery {
+  display: grid;
+  gap: 10px;
+}
+
+.gallery__title {
+  color: var(--subtitle-color);
+  font-size: 18px;
+  background-color: var(--accent-color);
+}
+
+.gallery__list {
+  display: grid;
+  gap: 10px;
+}
+
+.gallery__image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Футер */
+.footer {
+  position: relative;
+  display: grid;
+  place-items: center;
+  block-size: 100vh;
+  min-block-size: 668px;
+}
+
+.footer__title {
+  color: var(--title-color);
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  line-height: 0.825em;
+  text-shadow: 4px 4px 0 var(--accent-color);
+}
+
+/* Адаптив: >= 768px */
+@media (width >= 768px) {
+  .header {
+    padding: 20px 20px 20px 0;
+  }
+
+  .header__title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
+
+  .footer__title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
+
+  .section__title {
+    min-inline-size: 236px;
+  }
+
+  .section {
+    grid-template-columns: 236px 1fr;
+  }
+
+  .gallery__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery__item:first-child,
+  .gallery__item:last-child {
+    grid-column: span 2;
+  }
+
+  .gallery__item:nth-child(2),
+  .gallery__item:nth-child(3) {
+    grid-row: span 2;
+  }
+}
+
+/* Адаптив: >= 1024px */
+@media (width >= 1024px) {
+  .header__theme-menu {
+    justify-self: center;
+  }
+
+  .header__theme-menu-list {
+    flex-direction: row;
+  }
+
+  .section {
+    grid-template-columns: 315px 1fr;
+  }
+
+  .section__title {
+    min-inline-size: 315px;
+  }
 }
